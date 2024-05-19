@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="20dp"
     android:background="@color/white"
-    tools:context=".DangKi">
+    tools:context=".activity.DangKi">
 
     <ImageView
         android:id="@+id/logoDangNhap"
