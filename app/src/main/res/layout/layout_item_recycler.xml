@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="5dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="#D1FFE7">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/imgViewSP"
+                android:layout_width="50dp"
+                android:layout_height="70dp"
+                android:src="@drawable/logo_app"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/imgViewSP"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvTenSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Tên sản phẩm"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#FF5722"/>
+                <TextView
+                    android:id="@+id/tvGiaBanSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Giá SP"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:layout_below="@id/tvTenSP"/>
+                <TextView
+                    android:id="@+id/tvSoLuongSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Số lượng: "
+                    android:textSize="16dp"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/tvLoaiSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Loại: "
+                    android:textSize="16dp"
+                    />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/icDeleteSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete"
+                android:layout_alignParentEnd="true"/>
+            <ImageView
+                android:id="@+id/icEditSP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit"
+                android:layout_toLeftOf="@id/icDeleteSP"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

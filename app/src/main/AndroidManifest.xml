@@ -13,22 +13,22 @@
         android:theme="@style/Theme.FoodApp"
         tools:targetApi="31">
         <activity
-            android:name=".ResetPassword"
+            android:name=".activity.ResetPassword"
             android:exported="false" />
         <activity
-            android:name=".QuenMatKhau"
+            android:name=".activity.QuenMatKhau"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".DangKi"
+            android:name=".activity.DangKi"
             android:exported="false" />
         <activity
-            android:name=".DangNhap"
+            android:name=".activity.DangNhap"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activity.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true" />
     </application>
 
