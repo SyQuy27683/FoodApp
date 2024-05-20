@@ -104,8 +104,12 @@ public class ProductAdminAdapter extends RecyclerView.Adapter<ProductAdminAdapte
         });
 
         dialog.show();
-    }
 
+    }
+    public void filterList(ArrayList<Products> filteredList) {
+        list = filteredList;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return list.size();

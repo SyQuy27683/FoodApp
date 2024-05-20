@@ -24,12 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.HomeAdminActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.HomeActivity"
-            android:exported="false" />
+
         <activity
             android:name=".log.RegisterActivity"
             android:exported="false" />

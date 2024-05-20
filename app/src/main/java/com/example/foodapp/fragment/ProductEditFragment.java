@@ -1,8 +1,12 @@
 package com.example.foodapp.fragment;
 
+import static java.util.Locale.filter;
+
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +33,7 @@ public class ProductEditFragment extends Fragment {
     private ArrayList<Products> listProduct;
     private ProductDAO productDAO;
     private ProductAdminAdapter productAdapter;
+    private EditText edtSearch;
 
     @Nullable
     @Override
@@ -37,6 +42,7 @@ public class ProductEditFragment extends Fragment {
 
         rcvProduct = view.findViewById(R.id.rcvProduct);
         btnAddProduct = view.findViewById(R.id.btnAddProduct);
+        edtSearch =view.findViewById(R.id.edtSearch);
         rcvProduct.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         productDAO = new ProductDAO(getContext());
@@ -50,8 +56,35 @@ public class ProductEditFragment extends Fragment {
                 showAddProductDialog();
             }
         });
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Không cần xử lý trước sự thay đổi văn bản
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Không cần xử lý trong quá trình thay đổi văn bản
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Khi người dùng đã nhập hoàn tất, lọc danh sách sản phẩm dựa trên từ khóa tìm kiếm
+                filter(s.toString());
+            }
+        });
 
         return view;
+    }
+    private void filter(String keyword) {
+        ArrayList<Products> filteredList = new ArrayList<>();
+        for (Products product : listProduct) {
+            if (product.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                filteredList.add(product);
+            }
+        }
+        // Cập nhật danh sách sản phẩm hiển thị trong RecyclerView
+        productAdapter.filterList(filteredList);
     }
 
     private void showAddProductDialog() {
