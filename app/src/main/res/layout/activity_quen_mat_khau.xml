@@ -7,66 +7,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="25dp"
-    tools:context=".ResetPassword">
+    tools:context=".QuenMatKhau">
     <ImageView
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/logo"
         android:layout_gravity="center"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="đổi mật khẩu"
+        android:text="QUÊN MẬT KHẨU"
         android:textSize="30dp"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_error"
         android:textStyle="bold"
         android:textAllCaps="true"/>
-    <TextView
-        android:id="@+id/userNameReset"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Số điện thoại của bạn"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:drawableLeft="@drawable/call"
-        android:drawablePadding="10dp"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="20dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordReset"
+            android:id="@+id/edtSdtFogot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Mật khẩu mới"
-            android:inputType="textPassword"
+            android:hint="Số điện thoại"
+            android:inputType="text"
             android:textSize="20dp"
-            android:drawableLeft="@drawable/ic_security"
-            android:drawablePadding="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confirmPasswordReset"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Xác nhận mật khẩu mới"
-            android:inputType="textPassword"
-            android:textSize="20dp"
-            android:drawableLeft="@drawable/ic_security"
+            android:drawableLeft="@drawable/call"
             android:drawablePadding="10dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <Button
-        android:id="@+id/btnConfirm"
+        android:id="@+id/btnReset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Xác nhận"
+        android:text="reset"
         android:textSize="20dp"
         android:backgroundTint="#FE7F5E"
         android:textAllCaps="true"
