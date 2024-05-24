@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtSdtFogot"
+            android:id="@+id/edtSdtForgot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Số điện thoại"
@@ -45,6 +45,16 @@
         android:text="reset"
         android:textSize="20dp"
         android:backgroundTint="#FE7F5E"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Trở về"
+        android:textSize="20dp"
+        android:backgroundTint="#000000"
         android:textAllCaps="true"
         android:textStyle="bold"/>
 
