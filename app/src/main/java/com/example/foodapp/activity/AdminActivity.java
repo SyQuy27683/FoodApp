@@ -14,26 +14,22 @@ import com.example.foodapp.fragment.AdminMemberFragment;
 import com.example.foodapp.fragment.AdminNoticeFragment;
 import com.example.foodapp.fragment.AdminProductFragment;
 //import com.example.foodapp.fragment.AdminTypeFragment;
-import com.example.foodapp.fragment.UserCartFragment;
-import com.example.foodapp.fragment.UserFoodFragment;
-import com.example.foodapp.fragment.UserHomeFragment;
-import com.example.foodapp.fragment.UserProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class ManageActivity extends AppCompatActivity {
+public class AdminActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage);
+        setContentView(R.layout.activity_admin);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
 
         // Set default fragment
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new UserHomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, new AdminProductFragment()).commit();
         }
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -43,14 +39,15 @@ public class ManageActivity extends AppCompatActivity {
 
                 int itemId = item.getItemId();
                 if (itemId == R.id.home) {
-                    selectedFragment = new UserHomeFragment();
+                    selectedFragment = new AdminProductFragment();
                 } else if (itemId == R.id.food) {
-                    selectedFragment = new UserFoodFragment();
+                    selectedFragment = new AdminMemberFragment();
                 } else if (itemId == R.id.cart) {
-                    selectedFragment = new UserCartFragment();
-                }else if(itemId == R.id.profile){
-                    selectedFragment = new UserProfileFragment();
+                    selectedFragment = new AdminBillFragment();
+                }else if(itemId==R.id.profile){
+                    selectedFragment= new AdminNoticeFragment();
                 }
+
                 if (selectedFragment != null) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, selectedFragment).commit();
                 }
