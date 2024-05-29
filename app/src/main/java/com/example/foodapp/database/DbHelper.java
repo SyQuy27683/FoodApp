@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "APP_FOOD";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION =2;
 
     private static final String TABLE_ADMIN = "Admin";
     private static final String TABLE_USER = "User";
@@ -50,6 +50,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_NOTIFICATION = "CREATE TABLE " + TABLE_NOTIFICATION + " (" +
             "notificationId INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "title TEXT," +
             "content TEXT)";
 
     public DbHelper(@Nullable Context context) {
@@ -79,6 +80,11 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Thanh long ngọt', 5000, 'mon_an', 'Đây là mô tả của món ăn', 2)");
         db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Bun dau mam tom', 6000, 'fb_icon', 'Đây là mô tả của món ăn', 2)");
         db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Táo đỏ', 7000, 'gg_icon', 'Đây là mô tả của món ăn', 2)");
+
+        db.execSQL("INSERT INTO "+ TABLE_NOTIFICATION +"(title, content) VALUES('Giảm giá','Chương trình khuyến mãi mua 2 tặng 1')");
+        db.execSQL("INSERT INTO "+ TABLE_NOTIFICATION +"(title, content) VALUES('Quà tặng cuộc sống ','Quà tặng cuộc sống được ban cho bạn')");
+        db.execSQL("INSERT INTO "+ TABLE_NOTIFICATION +"(title, content) VALUES('Thông báo','Bạn đã bị thua 5 tỉ!')");
+
     }
 
     @Override

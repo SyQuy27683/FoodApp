@@ -37,15 +37,18 @@ public class AdminActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
 
+
                 int itemId = item.getItemId();
-                if (itemId == R.id.home) {
+                if (itemId == R.id.product_manager) {
                     selectedFragment = new AdminProductFragment();
-                } else if (itemId == R.id.food) {
+                } else if (itemId == R.id.member_manager) {
                     selectedFragment = new AdminMemberFragment();
-                } else if (itemId == R.id.cart) {
+                } else if (itemId == R.id.bill) {
                     selectedFragment = new AdminBillFragment();
-                }else if(itemId==R.id.profile){
+                }else if(itemId==R.id.chart){
                     selectedFragment= new AdminNoticeFragment();
+                }else if(itemId ==R.id.notification){
+                    selectedFragment = new AdminNoticeFragment();
                 }
 
                 if (selectedFragment != null) {
