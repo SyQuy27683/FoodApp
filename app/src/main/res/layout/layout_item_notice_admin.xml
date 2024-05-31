@@ -39,23 +39,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Đây là content "/>
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="end"
             android:paddingEnd="30dp">
-            <ImageButton
-                android:id="@+id/btnEdit"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/edit"/>
+
             <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/delete"/>
+
         </LinearLayout>
     </LinearLayout>
 

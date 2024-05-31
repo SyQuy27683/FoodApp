@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "APP_FOOD";
-    private static final int DATABASE_VERSION =2;
+    private static final int DATABASE_VERSION =1;
 
     private static final String TABLE_ADMIN = "Admin";
     private static final String TABLE_USER = "User";
@@ -81,7 +81,7 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Bun dau mam tom', 6000, 'fb_icon', 'Đây là mô tả của món ăn', 2)");
         db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Táo đỏ', 7000, 'gg_icon', 'Đây là mô tả của món ăn', 2)");
 
-        db.execSQL("INSERT INTO "+ TABLE_NOTIFICATION +"(title, content) VALUES('Giảm giá','Chương trình khuyến mãi mua 2 tặng 1')");
+        db.execSQL("INSERT INTO "+ TABLE_NOTIFICATION +"(title, content, notificationId) VALUES('Giảm giá','Chương trình khuyến mãi mua 2 tặng 1',1)");
         db.execSQL("INSERT INTO "+ TABLE_NOTIFICATION +"(title, content) VALUES('Quà tặng cuộc sống ','Quà tặng cuộc sống được ban cho bạn')");
         db.execSQL("INSERT INTO "+ TABLE_NOTIFICATION +"(title, content) VALUES('Thông báo','Bạn đã bị thua 5 tỉ!')");
 

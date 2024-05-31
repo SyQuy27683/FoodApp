@@ -26,13 +26,14 @@ public class NoticeDAO {
         SQLiteDatabase database = helper.getReadableDatabase();
         Cursor cursor = null;
         try {
-            String query = "SELECT title, content FROM Notification";
+            String query = "SELECT * FROM Notification";
             cursor = database.rawQuery(query, null);
             if (cursor.moveToFirst()) {
                 do {
-                    String title = cursor.getString(0);
-                    String content = cursor.getString(1);
-                    Notice notice = new Notice(title, content);
+                    Integer id = cursor.getInt(0);
+                    String title = cursor.getString(1);
+                    String content = cursor.getString(2);
+                    Notice notice = new Notice(id,title, content);
                     list.add(notice);
                 } while (cursor.moveToNext());
             }
@@ -59,16 +60,16 @@ public class NoticeDAO {
     }
 
     // Update
-    public boolean update(Notice notice) {
-        SQLiteDatabase database = helper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("notificationId", notice.getId());
-        values.put("title", notice.getTitle());
-        values.put("content", notice.getContent());
-        int result = database.update("Notification", values, "notificationId = ?", new String[]{String.valueOf(notice.getId())});
-        database.close();
-        return result > 0;
-    }
+//    public boolean update(Notice notice) {
+//        SQLiteDatabase database = helper.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put("notificationId", notice.getId());
+//        values.put("title", notice.getTitle());
+//        values.put("content", notice.getContent());
+//        int result = database.update("Notification", values, "notificationId = ?", new String[]{String.valueOf(notice.getId())});
+//        database.close();
+//        return result > 0;
+//    }
 
     // Delete
     public boolean delete(Integer id) {

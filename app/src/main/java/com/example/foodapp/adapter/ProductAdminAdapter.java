@@ -39,7 +39,8 @@ public class ProductAdminAdapter extends RecyclerView.Adapter<ProductAdminAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Products products = list.get(position);
+        int index = holder.getAdapterPosition();
+        Products products = list.get(index);
         holder.tvNameFood.setText(products.getName());
         holder.tvPriceFood.setText(products.getPrice() + "$");
         holder.tvDescription.setText(products.getDes());
@@ -50,13 +51,13 @@ public class ProductAdminAdapter extends RecyclerView.Adapter<ProductAdminAdapte
         holder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editProductItem(products, position);
+                editProductItem(products, index);
             }
         });
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteProductItem(products, position);
+                deleteProductItem(products, index);
             }
         });
     }
