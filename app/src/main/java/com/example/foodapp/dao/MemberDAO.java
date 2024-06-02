@@ -45,11 +45,14 @@ public class MemberDAO {
         ContentValues values = new ContentValues();
         values.put("name", member.getName());
         values.put("phone", member.getPhone());
-        values.put("passUser", member.getPasswordUser());
-        long add = db.insert("USER", null, values);
+        values.put("avatar", member.getAvatar());
+        values.put("passwordUser", member.getPasswordUser());
+        values.put("roleUser", member.getRoleUser());
+        long add = db.insert("User", null, values);
         db.close();
         return add != -1;
     }
+
 
     public boolean update(Member member) {
         SQLiteDatabase db = helper.getWritableDatabase();
@@ -67,6 +70,23 @@ public class MemberDAO {
         int del = db.delete("User", "id =?", new String[]{String.valueOf(id)});
         db.close();
         return del > 0;
+    }
+
+    public String checkLogin(String username, String password) {
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String sql = "SELECT roleUser FROM User WHERE name = ? AND passwordUser = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{username, password});
+
+        if (cursor.moveToFirst()) {
+            int roleUser = cursor.getInt(0);
+            cursor.close();
+            db.close();
+            return roleUser == 0 ? "admin" : "user";
+        } else {
+            cursor.close();
+            db.close();
+            return "invalid";
+        }
     }
 
 }

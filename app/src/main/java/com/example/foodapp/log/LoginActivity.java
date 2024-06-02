@@ -6,14 +6,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.foodapp.R;
-import com.example.foodapp.activity.ManageActivity;
+import com.example.foodapp.activity.AdminActivity;
+import com.example.foodapp.activity.UserActivity;
+import com.example.foodapp.dao.MemberDAO;
 
 public class LoginActivity extends AppCompatActivity {
     private LinearLayout btnToRegister;
     private Button btnLogin;
+    private EditText edtName, edtPassword;
+    private MemberDAO memberDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +38,41 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ManageActivity.class));
+                String username = edtName.getText().toString().trim();
+                String password = edtPassword.getText().toString().trim();
+
+                // Kiểm tra tên đăng nhập
+                if (username.isEmpty()) {
+                    edtName.setError("Tên đăng nhập không được để trống");
+                    edtName.requestFocus();
+                    return;
+                }
+
+                // Kiểm tra mật khẩu
+                if (password.isEmpty()) {
+                    edtPassword.setError("Mật khẩu không được để trống");
+                    edtPassword.requestFocus();
+                    return;
+                }
+
+                if (password.length() < 6) {
+                    edtPassword.setError("Mật khẩu phải có ít nhất 6 ký tự");
+                    edtPassword.requestFocus();
+                    return;
+                }
+
+                String role = memberDAO.checkLogin(username, password);
+                if (role.equals("admin")) {
+                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (role.equals("user")) {
+                    Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Tên đăng nhập hoặc mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -40,5 +80,9 @@ public class LoginActivity extends AppCompatActivity {
     private void addControls() {
         btnToRegister = findViewById(R.id.btnToRegister);
         btnLogin = findViewById(R.id.btnLogin);
+        edtName= findViewById(R.id.edtName);
+        edtPassword = findViewById(R.id.edtPassword);
+        memberDAO = new MemberDAO(LoginActivity.this);
+
     }
 }

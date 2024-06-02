@@ -8,21 +8,15 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "APP_FOOD";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
-    private static final String TABLE_ADMIN = "Admin";
     private static final String TABLE_USER = "User";
     private static final String TABLE_CATEGORY = "Category";
     private static final String TABLE_PRODUCT = "Product";
     private static final String TABLE_ORDERS = "Orders";
     private static final String TABLE_NOTIFICATION = "Notification";
 
-    private static final String CREATE_TABLE_ADMIN = "CREATE TABLE " + TABLE_ADMIN + " (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "avatar TEXT," +
-            "phone TEXT," +
-            "passwordAdmin TEXT," +
-            "roleAdmin TEXT)";
+
 
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -31,7 +25,7 @@ public class DbHelper extends SQLiteOpenHelper {
             "avatar TEXT," +
             "orderID TEXT," +
             "passwordUser TEXT," +
-            "roleUser TEXT)";
+            "roleUser INTEGER)";
 
     private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE " + TABLE_CATEGORY + " (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -64,7 +58,6 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_ADMIN);
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_PRODUCT);
@@ -90,22 +83,22 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_NOTIFICATION + "(title, content) VALUES('Quà tặng cuộc sống ','Quà tặng cuộc sống được ban cho bạn')");
         db.execSQL("INSERT INTO " + TABLE_NOTIFICATION + "(title, content) VALUES('Thông báo','Bạn đã bị thua 5 tỉ!')");
 
-
+        db.execSQL("INSERT INTO " + TABLE_USER + "(name, passwordUser, roleUser) " +
+                "VALUES('Admin','Admin123@',0)");
         db.execSQL("INSERT INTO " + TABLE_USER + "(name, phone, avatar, orderID, passwordUser, roleUser) " +
-                "VALUES('John Doe', '123-456-7890', 'avatar1', 'order_001', 'password123', '1')");
+                "VALUES('John Doe', '123-456-7890', 'avatar1', 'order_001', 'password123', 1)");
         db.execSQL("INSERT INTO " + TABLE_USER + "(name, phone, avatar, orderID, passwordUser, roleUser)" +
-                " VALUES('Jane Smith', '234-567-8901', 'avatar2', 'order_002', 'password234', '1')");
+                " VALUES('Jane Smith', '234-567-8901', 'avatar2', 'order_002', 'password234', 1)");
         db.execSQL("INSERT INTO " + TABLE_USER + "(name, phone, avatar, orderID, passwordUser, roleUser) " +
-                "VALUES('Alice Johnson', '345-678-9012', 'avatar3', 'order_003', 'password345', '1')");
+                "VALUES('Alice Johnson', '345-678-9012', 'avatar3', 'order_003', 'password345',1)");
         db.execSQL("INSERT INTO " + TABLE_USER + "(name, phone, avatar, orderID, passwordUser, roleUser) " +
-                "VALUES('Bob Brown', '456-789-0123', 'avatar4', 'order_004', 'password456', '1')");
+                "VALUES('Bob Brown', '456-789-0123', 'avatar4', 'order_004', 'password456', 1)");
         db.execSQL("INSERT INTO " + TABLE_USER + "(name, phone, avatar, orderID, passwordUser, roleUser) " +
-                "VALUES('Charlie Davis', '567-890-1234', 'avatar5', 'order_005', 'password567', '1')");
+                "VALUES('Charlie Davis', '567-890-1234', 'avatar5', 'order_005', 'password567', 1)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ADMIN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);

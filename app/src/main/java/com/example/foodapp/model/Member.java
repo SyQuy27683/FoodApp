@@ -1,15 +1,22 @@
 package com.example.foodapp.model;
 
 public class Member {
-    private Integer Id;
-    private String name, phone, avatar, orderID, passwordUser, roleUser;
+    private Integer Id,roleUser;
+    private String name, phone, avatar, orderID, passwordUser ;
 
-    public Member(Integer id, String name, String phone, String avatar, String orderID, String passwordUser, String roleUser) {
+    public Member(Integer id, String name, String phone, String avatar, String orderID, String passwordUser, Integer roleUser) {
         Id = id;
         this.name = name;
         this.phone = phone;
         this.avatar = avatar;
         this.orderID = orderID;
+        this.passwordUser = passwordUser;
+        this.roleUser = roleUser;
+    }
+
+    public Member(String name, String phone, String passwordUser, Integer roleUser) {
+        this.name = name;
+        this.phone = phone;
         this.passwordUser = passwordUser;
         this.roleUser = roleUser;
     }
@@ -70,11 +77,11 @@ public class Member {
         this.passwordUser = passwordUser;
     }
 
-    public String getRoleUser() {
+    public Integer getRoleUser() {
         return roleUser;
     }
 
-    public void setRoleUser(String roleUser) {
+    public void setRoleUser(Integer roleUser) {
         this.roleUser = roleUser;
     }
 }

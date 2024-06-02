@@ -8,11 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.foodapp.R;
-import com.example.foodapp.fragment.AdminBillFragment;
-import com.example.foodapp.fragment.AdminChartFragment;
-import com.example.foodapp.fragment.AdminMemberFragment;
-import com.example.foodapp.fragment.AdminNoticeFragment;
-import com.example.foodapp.fragment.AdminProductFragment;
 //import com.example.foodapp.fragment.AdminTypeFragment;
 import com.example.foodapp.fragment.UserCartFragment;
 import com.example.foodapp.fragment.UserFoodFragment;
@@ -21,7 +16,7 @@ import com.example.foodapp.fragment.UserProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class ManageActivity extends AppCompatActivity {
+public class UserActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     @Override
