@@ -3,11 +3,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="16dp">
-
+    android:padding="8dp">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Home Fragment"
-        android:textSize="18sp" />
+        android:text="Account user"
+        android:layout_marginVertical="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/rcvListAccount"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 </LinearLayout>

@@ -46,7 +46,7 @@ public class AdminActivity extends AppCompatActivity {
                 } else if (itemId == R.id.bill) {
                     selectedFragment = new AdminBillFragment();
                 }else if(itemId==R.id.chart){
-                    selectedFragment= new AdminNoticeFragment();
+                    selectedFragment= new AdminChartFragment();
                 }else if(itemId ==R.id.notification){
                     selectedFragment = new AdminNoticeFragment();
                 }

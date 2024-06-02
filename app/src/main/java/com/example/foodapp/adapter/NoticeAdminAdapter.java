@@ -40,7 +40,6 @@ public class NoticeAdminAdapter extends RecyclerView.Adapter<NoticeAdminAdapter.
         Notice notice = list.get(holder.getAdapterPosition());
         holder.tvTitle.setText(notice.getTitle());
         holder.tvContent.setText(notice.getContent());
-        holder.tvID.setText(String.valueOf(notice.getId()));
 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,16 +69,13 @@ public class NoticeAdminAdapter extends RecyclerView.Adapter<NoticeAdminAdapter.
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle;
         TextView tvContent;
-        TextView tvID;
-        ImageButton btnDelete, btnEdit;
+        ImageButton btnDelete;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
             tvTitle = view.findViewById(R.id.tvTitle);
             tvContent = view.findViewById(R.id.tvContent);
             btnDelete = view.findViewById(R.id.btnDelete);
-            btnEdit = view.findViewById(R.id.btnEdit);
-            tvID = view.findViewById(R.id.tvID);
         }
     }
 }
