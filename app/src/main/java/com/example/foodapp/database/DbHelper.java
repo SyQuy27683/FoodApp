@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "APP_FOOD";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 6;
 
     private static final String TABLE_USER = "User";
     private static final String TABLE_CATEGORY = "Category";
@@ -72,12 +72,18 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + TABLE_CATEGORY + "(name, description) VALUES('Dairy', 'Dairy products')");
         db.execSQL("INSERT INTO " + TABLE_CATEGORY + "(name, description) VALUES('Beverages', 'Various drinks')");
 
-        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Man ha noi', 5000, 'mon_an', 'Đây là mô tả của món ăn', 1)");
-        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Dua hau khong hat', 6000, 'fb_icon', 'Đây là mô tả của món ăn', 1)");
-        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Táo đỏ', 7000, 'gg_icon', 'Đây là mô tả của món ăn', 1)");
-        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Thanh long ngọt', 5000, 'mon_an', 'Đây là mô tả của món ăn', 2)");
-        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Bun dau mam tom', 6000, 'fb_icon', 'Đây là mô tả của món ăn', 2)");
-        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Táo đỏ', 7000, 'gg_icon', 'Đây là mô tả của món ăn', 2)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 1', 5000, 'mon_an', 'Đây là mô tả của món ăn', 1)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 2', 6000, 'anh3', 'Đây là mô tả của món ăn', 1)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 3', 7000, 'anh1', 'Đây là mô tả của món ăn', 1)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 4', 5000, 'mon_an', 'Đây là mô tả của món ăn', 2)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 5', 6000, 'anh2', 'Đây là mô tả của món ăn', 2)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 6', 7000, 'anh3', 'Đây là mô tả của món ăn', 2)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 1', 5000, 'mon_an', 'Đây là mô tả của món ăn', 1)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 2', 6000, 'anh3', 'Đây là mô tả của món ăn', 1)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 3', 7000, 'anh1', 'Đây là mô tả của món ăn', 1)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 4', 5000, 'mon_an', 'Đây là mô tả của món ăn', 2)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 5', 6000, 'anh2', 'Đây là mô tả của món ăn', 2)");
+        db.execSQL("INSERT INTO " + TABLE_PRODUCT + "(name, price, image, description, categoryId) VALUES('Món ăn 6', 7000, 'anh3', 'Đây là mô tả của món ăn', 2)");
 
         db.execSQL("INSERT INTO " + TABLE_NOTIFICATION + "(title, content, notificationId) VALUES('Giảm giá','Chương trình khuyến mãi mua 2 tặng 1',1)");
         db.execSQL("INSERT INTO " + TABLE_NOTIFICATION + "(title, content) VALUES('Quà tặng cuộc sống ','Quà tặng cuộc sống được ban cho bạn')");
@@ -95,6 +101,8 @@ public class DbHelper extends SQLiteOpenHelper {
                 "VALUES('Bob Brown', '456-789-0123', 'avatar4', 'order_004', 'password456', 1)");
         db.execSQL("INSERT INTO " + TABLE_USER + "(name, phone, avatar, orderID, passwordUser, roleUser) " +
                 "VALUES('Charlie Davis', '567-890-1234', 'avatar5', 'order_005', 'password567', 1)");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(name, phone, avatar, orderID, passwordUser, roleUser) " +
+                "VALUES('HO NGOC Y', '0708332716', 'avatar5', 'order_006', 'Admin123@', 1)");
     }
 
     @Override

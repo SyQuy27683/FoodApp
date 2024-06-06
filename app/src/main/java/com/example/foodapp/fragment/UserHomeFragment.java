@@ -39,19 +39,19 @@ public class UserHomeFragment extends Fragment {
                         tab.setText("All");
                         break;
                     case 1:
-                        tab.setText("Food 1");
+                        tab.setText("Fruits");
                         break;
                     case 2:
-                        tab.setText("Food 2");
+                        tab.setText("Vegetables");
                         break;
                     case 3:
-                        tab.setText("Food 3");
+                        tab.setText("Meat");
                         break;
                     case 4:
-                        tab.setText("Food 4");
+                        tab.setText("Seafood");
                         break;
                     case 5:
-                        tab.setText("Food 5");
+                        tab.setText("Dairy");
                         break;
                 }
             }
