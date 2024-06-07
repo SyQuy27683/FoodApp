@@ -12,7 +12,7 @@ import com.example.foodapp.model.User;
 
 public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "APP_FOOD";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_ADMIN = "Admin";
     private static final String TABLE_USER = "User";
@@ -24,7 +24,9 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_ADMIN = "CREATE TABLE " + TABLE_ADMIN + " (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "avatar TEXT," +
-            "phone TEXT)";
+            "phone TEXT," +
+            "password TEXT," +
+            "role INTEGER DEFAULT 1)"; // Add role column for admin
 
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -32,7 +34,8 @@ public class DbHelper extends SQLiteOpenHelper {
             "password TEXT," +
             "phone TEXT," +
             "avatar TEXT," +
-            "orderID TEXT)";
+            "orderID TEXT," +
+            "role INTEGER DEFAULT 0)"; // Add role column for user
 
     private static final String CREATE_TABLE_CATEGORY = "CREATE TABLE " + TABLE_CATEGORY + " (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -72,9 +75,9 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_NOTIFICATION);
 
         // Insert initial data
-        db.execSQL("INSERT INTO " + TABLE_ADMIN + "(avatar, phone) VALUES('admin_avatar', '0123456789')");
-        db.execSQL("INSERT INTO " + TABLE_USER + "(username, password, phone, avatar, orderID) VALUES('user1', 'password1', '0123456789', 'user_avatar', '1')");
-        db.execSQL("INSERT INTO " + TABLE_USER + "(username, password, phone, avatar, orderID) VALUES('user2', 'password2', '0987654321', 'user_avatar', '2')");
+        db.execSQL("INSERT INTO " + TABLE_ADMIN + "(avatar, phone, password, role) VALUES('admin_avatar', '1234567890', 'admin', 1)");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(username, password, phone, avatar, orderID, role) VALUES('user1', 'password1', '0123456789', 'user_avatar', '1', 0)");
+        db.execSQL("INSERT INTO " + TABLE_USER + "(username, password, phone, avatar, orderID, role) VALUES('user2', 'password2', '0987654321', 'user_avatar', '2', 0)");
 
         db.execSQL("INSERT INTO " + TABLE_CATEGORY + "(name, description) VALUES('Fruits', 'All kinds of fruits')");
         db.execSQL("INSERT INTO " + TABLE_CATEGORY + "(name, description) VALUES('Vegetables', 'Various vegetables')");
@@ -116,6 +119,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
         return cursorCount > 0;
     }
+
     public boolean checkUserExists(String phone) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = { "id" };
@@ -137,12 +141,14 @@ public class DbHelper extends SQLiteOpenHelper {
         contentValues.put("phone", phone);
         contentValues.put("username", name);
         contentValues.put("password", password);
+        contentValues.put("role", 0); // Default role as user
 
         long result = db.insert(TABLE_USER, null, contentValues);
         db.close();
 
         return result != -1; // Return true if insertion is successful
     }
+
     public User getCurrentUser() {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE id = 1"; // Adjust this query as per your logic
@@ -178,11 +184,30 @@ public class DbHelper extends SQLiteOpenHelper {
     public boolean updateUser(User user) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("name", user.getName());
+        values.put("username", user.getName());
         values.put("phone", user.getPhone());
 
-        long result = db.update("User", values, "id=?", new String[]{String.valueOf(user.getId())});
+        long result = db.update(TABLE_USER, values, "id=?", new String[]{String.valueOf(user.getId())});
         return result != -1;
     }
 
+    // Method to check if the admin exists with given phone number and password
+    public boolean checkAdmin(String phone, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = { "id" };
+        String selection = "phone = ? AND password = ? AND role = 1"; // Check for admin role
+        String[] selectionArgs = { phone, password };
+
+        Cursor cursor = db.query(TABLE_ADMIN, columns, selection, selectionArgs, null, null, null);
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        return cursorCount > 0;
+    }
+
+    // Method to check if the user or admin exists with given phone number and password
+    public boolean checkUserOrAdmin(String phone, String password) {
+        return checkUser(phone, password) || checkAdmin(phone, password);
+    }
 }

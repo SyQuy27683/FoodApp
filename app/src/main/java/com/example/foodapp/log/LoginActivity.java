@@ -48,11 +48,19 @@ public class LoginActivity extends AppCompatActivity {
                 if (phone.isEmpty() || password.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Vui lòng nhập số điện thoại và mật khẩu", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (dbHelper.checkUser(phone, password)) {
-                        // If the phone number and password are correct
-                        startActivity(new Intent(LoginActivity.this, ManageActivity.class));
+                    if (dbHelper.checkUserOrAdmin(phone, password)) {
+                        // Nếu số điện thoại và mật khẩu đúng
+                        if (dbHelper.checkAdmin(phone, password)) {
+                            // Nếu thông tin đăng nhập khớp với admin
+                            Toast.makeText(LoginActivity.this, "Đăng nhập với quyền Admin", Toast.LENGTH_SHORT).show();
+                            // Chuyển đến activity quản lý admin
+                             startActivity(new Intent(LoginActivity.this, ManageActivity.class));
+                        } else {
+                            // Nếu thông tin đăng nhập khớp với người dùng thường
+                            startActivity(new Intent(LoginActivity.this, ManageActivity.class));
+                        }
                     } else {
-                        // If the phone number and password are incorrect
+                        // Nếu số điện thoại và mật khẩu không đúng
                         Toast.makeText(LoginActivity.this, "Số điện thoại hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                     }
                 }
