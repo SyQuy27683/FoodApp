@@ -1,16 +1,21 @@
 package com.example.foodapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp.R;
+import com.example.foodapp.activity.DetailFoodActivity;
 import com.example.foodapp.model.Products;
 
 import java.util.ArrayList;
@@ -38,6 +43,21 @@ public class GetFoodAdapter extends RecyclerView.Adapter<GetFoodAdapter.FoodView
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         Products product = foodList.get(holder.getAdapterPosition());
         holder.bindData(product);
+        View.OnClickListener detailClickListener = v -> {
+            Intent intent = new Intent(context, DetailFoodActivity.class);
+            intent.putExtra("foodName", product.getName());
+            intent.putExtra("foodPrice", String.valueOf(product.getPrice()));
+            intent.putExtra("foodImage", product.getImage());
+            context.startActivity(intent);
+        };
+
+        if (layoutResourceId == R.layout.layout_item_food) {
+            holder.itemDetail1.setOnClickListener(detailClickListener);
+        } else if (layoutResourceId == R.layout.layout_item_food_all) {
+            holder.itemDetail2.setOnClickListener(detailClickListener);
+        } else {
+            Toast.makeText(context, "Lỗi hiển thị ~~~", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -49,6 +69,8 @@ public class GetFoodAdapter extends RecyclerView.Adapter<GetFoodAdapter.FoodView
 
         TextView tvFoodName, tvFoodPrice;
         ImageView imgFood;
+        LinearLayout itemDetail2;
+        CardView itemDetail1;
 
         public FoodViewHolder(@NonNull View itemView, int layoutResourceId) {
             super(itemView);
@@ -57,10 +79,12 @@ public class GetFoodAdapter extends RecyclerView.Adapter<GetFoodAdapter.FoodView
                 tvFoodName = itemView.findViewById(R.id.tvFoodNameDemo);
                 tvFoodPrice = itemView.findViewById(R.id.tvFoodPriceDemo);
                 imgFood = itemView.findViewById(R.id.imgFoodDemo);
+                itemDetail1 = itemView.findViewById(R.id.itemDetail1);
             } else if (layoutResourceId == R.layout.layout_item_food_all) {
                 tvFoodName = itemView.findViewById(R.id.tvFoodNameAll);
                 tvFoodPrice = itemView.findViewById(R.id.tvFoodPriceAll);
                 imgFood = itemView.findViewById(R.id.imgFoodAll);
+                itemDetail2 = itemView.findViewById(R.id.itemDetail2);
             }
         }
 

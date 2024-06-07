@@ -35,7 +35,7 @@ public class AllFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user_all, container, false);
         rcvDemoFood = view.findViewById(R.id.rcvDemoFood);
         rcvAllFood = view.findViewById(R.id.rcvAllFood);
-        
+
         rcvDemoFood.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         rcvAllFood.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -61,7 +61,7 @@ public class AllFragment extends Fragment {
             public void run() {
                 currentIndex++;
                 if (currentIndex >= foodList.size()) {
-                    currentIndex = 0;
+                        currentIndex=0;
                 }
                 rcvDemoFood.smoothScrollToPosition(currentIndex);
                 handler.postDelayed(this, 4000);
