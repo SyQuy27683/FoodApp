@@ -10,7 +10,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "APP_FOOD";
     private static final int DATABASE_VERSION = 6;
 
-    private static final String TABLE_USER = "User";
+    public static final String TABLE_USER = "User";
     private static final String TABLE_CATEGORY = "Category";
     private static final String TABLE_PRODUCT = "Product";
     private static final String TABLE_ORDERS = "Orders";

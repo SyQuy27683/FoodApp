@@ -1,5 +1,7 @@
 package com.example.foodapp.dao;
 
+import static com.example.foodapp.database.DbHelper.TABLE_USER;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -87,6 +89,74 @@ public class MemberDAO {
             db.close();
             return "invalid";
         }
+    }
+
+//    public Member getCurrentUser() {
+//        SQLiteDatabase db = helper.getReadableDatabase();
+//        Member currentUser = null;
+//
+//        // Lấy ID của người dùng hiện tại từ bất kỳ nguồn nào (ví dụ: SharedPreferences, Session, ...).
+//        int userId = 1; // Thay đổi cách lấy ID thực sự của người dùng tại đây.
+//
+//        // Thực hiện truy vấn để lấy thông tin của người dùng dựa trên ID.
+//        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE id = ?";
+//        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(userId)});
+//
+//        // Kiểm tra xem cursor có dữ liệu không.
+//        if (cursor != null && cursor.moveToFirst()) {
+//            // Khởi tạo đối tượng Member từ dữ liệu của cursor.
+//            currentUser = new Member(
+//                    cursor.getInt(cursor.getColumnIndex("id")),
+//                    cursor.getString(cursor.getColumnIndex("name")),
+//                    cursor.getString(cursor.getColumnIndex("phone")),
+//                    cursor.getString(cursor.getColumnIndex("avatar")),
+//                    cursor.getString(cursor.getColumnIndex("orderID")),
+//                    cursor.getString(cursor.getColumnIndex("passwordUser")),
+//                    cursor.getInt(cursor.getColumnIndex("roleUser"))
+//            );
+//        }
+//
+//        // Đóng cursor và database.
+//        if (cursor != null) {
+//            cursor.close();
+//        }
+//        db.close();
+//
+//        // Trả về đối tượng Member của người dùng hiện tại.
+//        return currentUser;
+//    }
+
+
+    public Member getCurrentUser(int userId) {
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Member currentUser = null;
+
+        // Thực hiện truy vấn để lấy thông tin của người dùng dựa trên ID.
+        String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE id = ?";
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{String.valueOf(userId)});
+
+        // Kiểm tra xem cursor có dữ liệu không.
+        if (cursor != null && cursor.moveToFirst()) {
+            // Khởi tạo đối tượng Member từ dữ liệu của cursor.
+            currentUser = new Member(
+                    cursor.getInt(cursor.getColumnIndex("id")),
+                    cursor.getString(cursor.getColumnIndex("name")),
+                    cursor.getString(cursor.getColumnIndex("phone")),
+                    cursor.getString(cursor.getColumnIndex("avatar")),
+                    cursor.getString(cursor.getColumnIndex("orderID")),
+                    cursor.getString(cursor.getColumnIndex("passwordUser")),
+                    cursor.getInt(cursor.getColumnIndex("roleUser"))
+            );
+        }
+
+        // Đóng cursor và database.
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        // Trả về đối tượng Member của người dùng hiện tại.
+        return currentUser;
     }
 
 }
